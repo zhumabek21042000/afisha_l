@@ -1,0 +1,56 @@
+@media (min-width: 768px) and (max-width: 1024px) {
+    .header {
+        min-width: 1208px
+    }
+}
+
+.header{
+    background-color: #fff;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    width: 100%;
+}
+
+*{
+    box-sizing: border-box;
+}
+
+*, :after, :before {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+}
+
+div{
+    display: block;
+}
+
+body{
+    font-family: Manrophe, sans-serif;
+    font-weight: 400;
+    font-feature-settings: "calt", "liga";
+    margin:0;
+    padding: 0;
+}
+
+::-webkit-scrollbar{
+    width: 8px;
+    height: 8px;
+    background-color: #ddd;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: #9797a5;
+    outline: none;
+}
+
+.header-logo {
+    text-decoration: none;
+    min-width: 260px;
+    color: #fd6500;
+    display:flex;
+    align-items: center;
+}
+a:-webkit-any-link{
+    cursor: pointer;
+}
+

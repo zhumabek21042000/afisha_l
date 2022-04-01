@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": "elite",
+      "title": "Student",
+      "price": 1000
+    },
+    {
+      "id": "club",
+      "title": "Adult",
+      "price": 1500
+    },
+    {
+      "id": "premium",
+      "title": "Teenagers",
+      "price": 600
+    }
+  ]
+}

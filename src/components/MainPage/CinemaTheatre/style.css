@@ -1,0 +1,47 @@
+.event-type{
+    display: flex;
+    align-items: center;
+}
+
+.event-type .event-link{
+    text-decoration: none;
+    cursor: pointer;
+    color: #000;
+    margin-right: 15px;
+}
+
+.event-link.active{
+    background-color: #4f4f60;
+    border-color: #4f4f60;
+    color: #fff;
+    font-weight: 700;
+}
+.event-link{
+    cursor: pointer;
+    -ms-user-select: none;
+    user-select: none;
+    -o-user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    outline: none;
+    border-radius: 30px;
+    border: 1px solid transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: Manrope,sans-serif;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: #2d2d36;
+    height: 40px;
+    padding: 0 16px;
+    text-decoration: none;
+    background-color: transparent;
+}
+.event-link:hover{
+    z-index: 2;
+    background-color: #949494;
+    transition: all 0.5s ease;
+}
