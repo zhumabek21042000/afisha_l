@@ -1,0 +1,135 @@
+.cinema-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.center-side {
+  width: 100%;
+}
+.title {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 42px;
+  color: #000;
+  font-weight: 700;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
+.link.small {
+  font-size: 14px;
+  line-height: 19.12px;
+}
+
+.link.large {
+  font-size: 18px;
+  line-height: 24.59px;
+}
+div :hover {
+  background-color: Transparent;
+  background-repeat: no-repeat;
+}
+.text-primary {
+  color: #fd6500 !important;
+}
+
+.cinema-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  column-count: 2;
+}
+
+.cinema-list li {
+  margin-bottom: 15px;
+  list-style-position: inside;
+  -webkit-column-break-inside: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
+  padding: 8px 0px;
+}
+
+.cinema-mobile:last-child {
+  margin-bottom: 0;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.d-flex {
+  display: flex;
+}
+.mb-32 {
+  margin-bottom: 32px !important;
+}
+.mr-32 {
+  margin-right: 32px !important;
+}
+.ml-20 {
+  margin-left: 20px !important;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.cinema-mobile {
+  border-radius: 12px;
+  border: 1px solid #ccc;
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-bottom: 8px;
+  width: 100%;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.cinema-mobile:hover {
+  background-color: inherit;
+  content: "";
+}
+.cinema-mobile-image {
+  width: 45px;
+  height: 45px;
+  min-width: 45px;
+  border-radius: 14px;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: #ddd;
+}
+
+.cinema-mobile-title {
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 1;
+  -moz-line-clamp: 1;
+  -ms-line-clamp: 1;
+  line-clamp: 1;
+  overflow: hidden;
+}
+
+.cinema-mobile-subtitle {
+  font-size: 12px;
+  line-height: 16px;
+  opacity: 0.5;
+  padding-top: 3px;
+  font-weight: 400;
+  color: #000;
+  max-width: 305;
+  overflow: hidden;
+}

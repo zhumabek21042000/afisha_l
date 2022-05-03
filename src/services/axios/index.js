@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const axiosInstance = axios.create({
-  baseURL: "http://nestjs-boilerplate-test.herokuapp.com/api",
+  baseURL: "http://captkakao.su",
 });
 
 axiosInstance.interceptors.request.use(
@@ -11,6 +11,7 @@ axiosInstance.interceptors.request.use(
 
     if (authToken) {
       config.headers.authorization = `Bearer ${authToken}`;
+      alert(config.headers.authorization)
     }
 
     return config;

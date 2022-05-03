@@ -6,7 +6,7 @@ function UserRoute({ children, ...rest }) {
   const location = useLocation();
   const url = new URLSearchParams(location.search.slice(1));
 
-  return auth.user ? <Navigate to={url.get("redirect") || "/"} /> : children;
+  return localStorage.getItem("token") ? <Navigate to={url.get("redirect") || "/"} /> : children;
 }
 
 export default UserRoute;

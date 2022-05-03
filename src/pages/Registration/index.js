@@ -40,7 +40,7 @@ function Registration() {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      await api.auth.registration(data);
+      await api.registration(data);
       const { data: loginData } = await api.auth.login(data);
       auth.setToken(loginData.token);
       auth.setUser(loginData.user);

@@ -1,21 +1,29 @@
-import React, {forwardRef} from 'react'
+import React, { forwardRef } from "react";
 import "./style.css";
 import EventCity from "./EventCity/index";
-import CinemaTheatre from "./CinemaTheatre/index"
-import "./style.css"
-
-
+import CinemaTheatre from "./CinemaTheatre/index";
+import MovieEventSlider from "./MovieEventSlider";
+import CinemaList from "./Cinema/CinemaList";
+import MoviesSoon from "./Movies/MovieSoon/index";
+import { movie_list } from "./movie_list_test.js";
+import { movie_soon_list } from "./movie_soon_list_test.js";
+// import TextEditor from "../TextEditor";
 const Main = () => {
   // const EventCityRef = React.forwardRef((props, ref)=>(
-    
+
   //   <EventCity {...props} innerRef={ref}/>
   // ))
   return (
     <div className="container">
-        <EventCity city={"Астана"}></EventCity>
-        <CinemaTheatre></CinemaTheatre>
-    </div>
-  )
-}
+      <EventCity city={"Астана"}></EventCity>
+      <CinemaTheatre></CinemaTheatre>
+      <MovieEventSlider movie_list={movie_list}></MovieEventSlider>
+      <CinemaList></CinemaList>
+      <MoviesSoon movie_list={movie_soon_list}></MoviesSoon>
 
-export default Main
+      {/* <TextEditor></TextEditor> */}
+    </div>
+  );
+};
+
+export default Main;

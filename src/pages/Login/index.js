@@ -41,18 +41,24 @@ function Login() {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      const { data: loginData } = await api.auth.login(data);
-
-      auth.setToken(loginData.token);
-      auth.setUser(loginData.user);
+      const { data: loginData } = await api.login(data);
+      localStorage.setItem("token", loginData.auth_token)
+      
+      auth.setToken(loginData.auth_token);
+      alert(loginData.auth_token)
+      console.log(auth.token)
+      auth.setUser(api.getUser.data);
     } catch (e) {
       if (e.response.status === 422) {
         Object.keys(e.response.data.errors).forEach((key) => {
           setError(key, {
-            type: "manual",
+            type: "validation",
             message: e.response.data.errors[key],
           });
         });
+      }
+      else if(e.response.status === 401){
+        alert("Неправильная почта или пароль")
       }
     } finally {
       setIsLoading(false);
@@ -64,6 +70,7 @@ function Login() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h6">Войдите или зарегистрируйтесь</Typography>
+      
         </Grid>
       </Grid>
       <form onSubmit={handleSubmit(onSubmit)}>

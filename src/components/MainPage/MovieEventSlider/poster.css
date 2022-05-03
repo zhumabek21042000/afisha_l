@@ -1,0 +1,128 @@
+.poster {
+  padding-right: 16px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+
+.poster-image {
+  position: relative;
+  height: 236px;
+  width: 164px;
+  min-width: 164px;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #ddd;
+  background-position: 50%;
+}
+
+.rate.green {
+  background-color: #2aa65c;
+  -webkit-box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
+  box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
+}
+.poster .rate {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  width: 48px;
+  height: 24px;
+  z-index: 1;
+}
+.rate {
+  background: #fd6500;
+  -webkit-box-shadow: 0 4px 9px rgb(253 101 0 / 50%);
+  box-shadow: 0 4px 9px rgb(253 101 0 / 50%);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 48px;
+  min-width: 48px;
+  height: 24px;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.poster-image-gradient {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 236px;
+  border-radius: 12px;
+  top: 0;
+  left: 0;
+  background-color: rgba(30, 65, 94, 0.3);
+}
+
+.poster-title {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24.59px;
+  margin-top: 8px;
+  margin-bottom: 4px;
+  display: block;
+  text-decoration: none;
+  color: #161620;
+  max-width: 164px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  -ms-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.poster span {
+  font-size: 14px;
+  line-height: 18px;
+  font-weight: 400;
+  color: #9797a5;
+  display: block;
+  max-width: 164px;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -ms-box-orient: vertical;
+  box-orient: vertical;
+  -webkit-line-clamp: 2;
+  -moz-line-clamp: 2;
+  -ms-line-clamp: 2;
+  line-clamp: 2;
+  overflow: hidden;
+}
+.poster-subtitle {
+  color: #2d2d36 !important;
+  font-size: 14px;
+  line-height: 19px;
+  margin-bottom: 6px;
+}
+
+.poster-data div:hover {
+  color: #fd6500;
+}
+.poster-data span:hover {
+  color: #9797a5;
+}
+
+.poster-date {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  line-height: 18px;
+  color: #9797a5;
+  font-weight: 400 !important;
+}

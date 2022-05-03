@@ -5,9 +5,9 @@ import Registration from "../../pages/Registration/index";
 import useAuth from "../../hooks/index";
 import PrivateRoute from "../components/PrivateRoute/index";
 import UserRoute from "../components/UserRoute/index";
-
+import MovieDetails from "../../components/Movie/MovieDetails";
+import MovieAdminPage from "../../components/Admin/Movie/Movies";
 import { ROUTES } from "../../constants/index";
-
 
 import {
   CircularProgress,
@@ -27,9 +27,8 @@ function AppRoutes() {
   const classes = useStyles();
   const auth = useAuth();
 
-  return  (
+  return (
     <Routes>
- 
       <Route
         path="/login"
         element={
@@ -38,9 +37,7 @@ function AppRoutes() {
           </UserRoute>
         }
       />
-      <Route 
-        path="/"
-        element={<Main></Main>}/>
+      <Route path="/" element={<Main></Main>} />
       <Route
         path="/registration"
         element={
@@ -49,7 +46,12 @@ function AppRoutes() {
           </UserRoute>
         }
       />
-
+      <Route
+        exact
+        path="/movie/:id"
+        render={({ match }) => <MovieDetails id={match.params.id} />}
+      />
+      <Route path="/admin/posts" element={<MovieAdminPage />} />
     </Routes>
   );
 }
