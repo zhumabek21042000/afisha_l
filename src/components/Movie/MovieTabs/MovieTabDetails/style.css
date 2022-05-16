@@ -1,0 +1,31 @@
+.about-movie-desc {
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+}
+.about-movie-desc strong {
+  margin-right: 10px;
+  font-weight: 700;
+}
+
+.about-movie-actors {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  height: auto;
+  -webkit-columns: 2;
+  column-count: 2;
+}
+
+.about-movie-actors li {
+    list-style-position: inside;
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+}
+
+.black-border{
+  padding-left: 24px;
+  padding-right: 24px;
+  border-left: 1px solid #ccc;
+}
