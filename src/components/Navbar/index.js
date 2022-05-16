@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import useAuth from "../../hooks/index";
+import api from "../../services/endpoints/auth";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -11,9 +12,13 @@ function Navbar() {
   const [click, setClick] = useState(false);
   const [searchClick, setSearchClick] = useState(false);
   const auth = useAuth();
+  const [user, setUser] = useState(
+    localStorage.getItem("token") ? api.getUser() : ""
+  );
 
   const handleClick = () => setClick(!click);
   const handleSearchClick = () => setSearchClick(!searchClick);
+
   return (
     <>
       <nav className="navbar">
@@ -47,32 +52,44 @@ function Navbar() {
                 Новости
               </NavLink>
             </li>
-
-            <li className="nav-item">
-              {auth.isLoaded ? (
-                <NavLink
-                  exact
-                  to="/profile"
-                  activeClassName="active"
-                  className="nav-links"
-                  onClick={handleClick}
-                >
-                  Profile
-                </NavLink>
-              ) : (
-                <>
+            {user !== "" ? (
+              <>
+                <li className="nav-item">
                   <NavLink
                     exact
-                    to="/login"
+                    to="/profile"
                     activeClassName="active"
                     className="nav-links"
                     onClick={handleClick}
                   >
-                    Войти
+                    Profile
                   </NavLink>
-                </>
-              )}
-            </li>
+                </li>
+                <li className="nav-item">
+                  <NavLink
+                    exact
+                    to="/"
+                    activeClassName="active"
+                    className="nav-links"
+                    onClick={() => localStorage.removeItem("token")}
+                  >
+                    Выйти
+                  </NavLink>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <NavLink
+                  exact
+                  to="/login"
+                  activeClassName="active"
+                  className="nav-links"
+                  onClick={handleClick}
+                >
+                  Войти
+                </NavLink>
+              </li>
+            )}
           </ul>
 
           <ul className={click ? "nav-menu-mobile active" : "nav-menu-mobile"}>

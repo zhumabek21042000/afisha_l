@@ -46,11 +46,12 @@ function AppRoutes() {
           </UserRoute>
         }
       />
-      <Route
+      {/* <Route
         exact
         path="/movie/:id"
         render={({ match }) => <MovieDetails id={match.params.id} />}
-      />
+      /> */}
+      <Route path="/movie/1" element={<MovieDetails />} />
       <Route path="/admin/posts" element={<MovieAdminPage />} />
     </Routes>
   );

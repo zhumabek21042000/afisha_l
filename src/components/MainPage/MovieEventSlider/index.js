@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Slider from "react-slick";
 import "./style.css";
 import "slick-carousel/slick/slick.css";
@@ -36,12 +37,14 @@ const MovieEventSlider = (props) => {
               <div>6</div> */}
 
               {movieList.map((movie, index) => (
-                <Poster
-                  rate={movie.rate}
-                  title={movie.title}
-                  image={movie.image}
-                  genres={movie.genres}
-                />
+                <Link to={`/movie/${index}`}>
+                  <Poster
+                    rate={movie.rate}
+                    title={movie.title}
+                    image={movie.image}
+                    genres={movie.genres}
+                  />
+                </Link>
               ))}
 
               {Array(settings.slidesToShow - movieList.length)

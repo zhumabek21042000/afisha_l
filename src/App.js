@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar/index";
 import Main from "./components/MainPage/Main";
 import useAuth from "./hooks/index";
 import Routes from "./routes/Routes/index";
+// import "semantic-ui-css/semantic.min.css";
 
 function App() {
   return (
