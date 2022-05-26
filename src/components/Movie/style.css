@@ -140,7 +140,14 @@ body {
   color: #ff9d00;
 }
 .tabs {
+  width: 100%;
+}
+
+.about-movie-filters {
   display: flex;
-  grid-gap: 16px;
-  gap: 16px;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 32px;
+  padding-bottom: 32px;
 }

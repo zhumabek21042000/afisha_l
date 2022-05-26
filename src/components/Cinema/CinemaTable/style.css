@@ -1,0 +1,50 @@
+.cinema-schedule {
+  min-width: 1208px;
+}
+
+.cinema-schedule-head {
+  height: 40px;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.cinema-schedule-head:not(.cinema) .container {
+  display: flex;
+  justify-content: stretch;
+}
+
+.container {
+  width: 100%;
+  max-width: 1152px;
+  min-width: 1152px;
+  margin: 0 auto;
+  padding-left: 28px;
+  padding-right: 28px;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+}
+
+.cinema-schedule-head:not(.cinema) .container > div {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cinema-schedule-body {
+  position: relative;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  padding-bottom: 80px;
+  overflow-y: hidden;
+  min-width: 1152px;
+}
