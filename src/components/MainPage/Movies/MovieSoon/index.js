@@ -4,11 +4,11 @@ import MoviesSoon from "./MoviesSoon";
 const index = (props) => {
   return (
     <>
-      <div class="d-flex align-center space-between mb-24">
-        <a class="title link" href="/movies_list?filter=soon">
+      <div className="d-flex align-center space-between mb-24">
+        <a className="title link" href="/movies_list?filter=soon">
           Скоро в кино
         </a>
-        <a class="link small text-primary" href="/movies_list?filter=soon">
+        <a className="link small text-primary" href="/movies_list?filter=soon">
           Все 15
         </a>
       </div>

@@ -1,7 +1,6 @@
 import React, { forwardRef } from "react";
 import "./style.css";
 import EventCity from "./EventCity/index";
-import CinemaTheatre from "./CinemaTheatre/index";
 import MovieEventSlider from "./MovieEventSlider";
 import CinemaList from "./Cinema/CinemaList";
 import MoviesSoon from "./Movies/MovieSoon/index";
@@ -16,7 +15,6 @@ const Main = () => {
   return (
     <div className="container">
       <EventCity city={"Астана"}></EventCity>
-      <CinemaTheatre></CinemaTheatre>
       <MovieEventSlider movie_list={movie_list}></MovieEventSlider>
       <CinemaList></CinemaList>
       <MoviesSoon movie_list={movie_soon_list}></MoviesSoon>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import "./cinema_list.css";
+import "./style.css";
 
 const CinemaList = (props) => {
   const [cinemaCount, setCinemaCount] = useState(0);
@@ -21,7 +21,7 @@ const CinemaList = (props) => {
         <div className="overflow-hidden">
           <ul className="cinema-list">
             <li>
-              <Link to={"/cinemas/1"} className="cinema-mobile">
+              <Link to={"/cinema/1"} className="cinema-mobile">
                 <div
                   className="cinema-mobile-image"
                   style={{
@@ -40,7 +40,7 @@ const CinemaList = (props) => {
               </Link>
             </li>
             <li>
-              <Link to={"/cinemas/1"} className="cinema-mobile">
+              <Link to={"/cinema/1"} className="cinema-mobile">
                 <div
                   className="cinema-mobile-image"
                   style={{

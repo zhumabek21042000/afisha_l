@@ -1,11 +1,26 @@
 import React, { useState } from "react";
 import "./style.css";
-import YoutubeEmbed from "./Video/YoutubeEmbed";
+import YoutubeEmbed from "../Video/YoutubeEmbed";
 import { AiFillStar } from "react-icons/ai/index";
-import Tabs from "./MovieTabs/MovieTabs";
-import MovieFilter from "./MovieFilter/MovieFilter";
-import CinemaTable from "../Cinema/CinemaTable/CinemaTable";
+import Tabs from "../MovieTabs/MovieTabs";
+import MovieFilter from "../MovieFilter/MovieFilter";
+import MovieTableHead from "../../Cinema/CinemaTable/MovieTableHead";
+import MovieSchedule from "../MovieSchedule/MovieSchedule";
+import CommentList from "../../CommentList/CommentList";
 
+const cmlist = [
+  {
+    name: "Albert Duchovich",
+    date: "12.02.2022",
+
+    text: "Full he none no side. Uncommonly surrounded considered for him are its. It we is read good soon. My to considered delightful invitation announcing of no decisively boisterous. Did add dashwoods deficient man concluded additions resources. Or landlord packages overcame distance smallest in recurred. Wrong maids or be asked no on enjoy. Household few sometimes out attending described. Lain just fact four of am meet high.",
+  },
+  {
+    name: "David Duchovich",
+    date: "22.04.2021",
+    text: "Any delicate you how kindness horrible outlived servants. You high bed wish help call draw side. Girl quit if case mr sing as no have. At none neat am do over will. Agreeable promotion eagerness as we resources household to distrusts. Polite do object at passed it is. Small for ask shade water manor think men begin.",
+  },
+];
 function SampleNextArrow(props) {
   const { className, style, onClick } = props;
   return (
@@ -137,7 +152,11 @@ function MovieDetails(props) {
           <MovieFilter></MovieFilter>
         </div>
       </div>
-      <CinemaTable></CinemaTable>
+      <MovieTableHead></MovieTableHead>
+      <div className="container">
+        {/* <MovieSchedule></MovieSchedule> */}
+        <CommentList comment_list={cmlist}></CommentList>
+      </div>
     </>
   );
 }

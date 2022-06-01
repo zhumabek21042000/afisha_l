@@ -1,7 +1,18 @@
 .cinema-schedule {
   min-width: 1208px;
+  position: relative;
+  box-sizing: border-box;
 }
-
+.cinemas-schedule.halls .cinemas-schedule-head {
+  height: 40px;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 2;
+}
 .cinema-schedule-head {
   height: 40px;
   background-color: #f1f1f1;
@@ -12,6 +23,9 @@
   position: sticky;
   top: 0;
   z-index: 1;
+}
+.cinema-schedule-head:hover {
+  background-color: #f1f1f1;
 }
 
 .cinema-schedule-head:not(.cinema) .container {
@@ -47,4 +61,8 @@
   padding-bottom: 80px;
   overflow-y: hidden;
   min-width: 1152px;
+}
+.cinemas-schedule.halls .cinemas-schedule-head .container {
+  display: flex;
+  justify-content: stretch;
 }

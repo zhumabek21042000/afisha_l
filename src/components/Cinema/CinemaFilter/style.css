@@ -1,0 +1,35 @@
+.links-group,
+.links-group-item {
+  display: flex;
+  align-items: center;
+}
+
+.links-group {
+  height: 24px;
+}
+
+.links-group-item.active {
+  font-weight: 600;
+  color: #fd6500;
+  margin-left: 10px;
+}
+
+.links-group-item {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+  cursor: pointer;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.links-group-item,
+.links-group-item.active:first-child {
+  margin-right: 10px;
+}
+.about-movie-date {
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 400;
+}

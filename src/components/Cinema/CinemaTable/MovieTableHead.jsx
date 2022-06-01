@@ -1,10 +1,11 @@
 import React from "react";
 import { useState } from "react-router-dom";
 import "./style.css";
+import MovieSchedule from "../../Movie/MovieSchedule/MovieSchedule";
 
-function CinemaTable() {
+function MovieTableHead() {
   return (
-    <div className="cinema-schedule">
+    <div className="cinema-schedule halls">
       <div className="cinema-schedule-head">
         <div className="container">
           <div style={{ width: "10%" }}>Время</div>
@@ -17,8 +18,11 @@ function CinemaTable() {
           <div style={{ width: "15%" }}>VIP</div>
         </div>
       </div>
+      <div className="container cinema-schedule-body">
+        <MovieSchedule></MovieSchedule>
+      </div>
     </div>
   );
 }
 
-export default CinemaTable;
+export default MovieTableHead;

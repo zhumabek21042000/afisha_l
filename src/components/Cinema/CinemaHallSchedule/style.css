@@ -1,0 +1,189 @@
+.cinemas-schedule {
+  position: relative;
+  min-width: 1208px;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-head {
+  height: 40px;
+  background-color: #f1f1f1;
+  display: flex;
+  justify-content: center;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -1px;
+  z-index: 2;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-head .container {
+  display: flex;
+  justify-content: stretch;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-head .container > div {
+  width: 100%;
+  display: flex;
+}
+
+.cinemas-schedule.halls .seance {
+  width: 96px;
+  max-width: 96px;
+}
+
+.cinemas-schedule.halls .movie {
+  width: calc(100% - 766px);
+  max-width: calc(100% - 766px);
+  padding-left: 24px;
+  padding-right: 8px;
+}
+.cinemas-schedule.halls .lang,
+.cinemas-schedule.halls .price {
+  width: 110px;
+  max-width: 110px;
+  min-width: 110px;
+}
+
+.cinemas-schedule.halls .action {
+  width: 170px;
+  min-width: 170px;
+  justify-content: flex-end !important;
+}
+.cinemas-schedule.halls .cinemas-schedule-body {
+  position: relative;
+  -webkit-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  padding-bottom: 24px;
+  overflow-y: hidden;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-body .title {
+  margin-top: 32px;
+  font-size: 32px;
+  line-height: 44px;
+  color: #fd6500;
+}
+
+.title {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 42px;
+  color: #000;
+  font-weight: 700;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-line {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding-top: 20px;
+  padding-bottom: 40px;
+}
+.cinemas-schedule.halls .cinemas-schedule-line > div {
+  width: 100%;
+}
+
+.cinemas-schedule.halls
+  .cinemas-schedule-line
+  .cinemas-schedule-row:not(:last-child) {
+  padding-bottom: 30px;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-line .cinemas-schedule-row {
+  display: flex;
+  padding-top: 0;
+}
+
+.cinemas-schedule.halls .cinemas-schedule-line .cinemas-schedule-row > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: 400;
+}
+
+.cinemas-schedule.halls .seance {
+  width: 96px;
+  max-width: 96px;
+}
+.cinemas-schedule.halls .action {
+  width: 170px;
+  min-width: 170px;
+  justify-content: flex-end !important;
+}
+.schedule-time {
+  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 96px;
+  min-width: 96px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.schedule-time > div {
+  color: #161620;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 32px;
+  text-align: center;
+}
+
+.cinemas-schedule.halls
+  .cinemas-schedule-line
+  .cinemas-schedule-row
+  > div.row-divider {
+  border-right: 1px solid #ccc;
+}
+
+.cinemas-schedule.halls
+  .cinemas-schedule-line
+  .cinemas-schedule-row
+  > div.movie {
+  justify-content: flex-start;
+}
+.cinemas-schedule.halls .movies-title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
+  color: #161620;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
+
+.cinemas-schedule.halls
+  .cinemas-schedule-line
+  .cinemas-schedule-row
+  .session-lang-tag {
+  width: 60px;
+  height: 30px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+.cinemas-schedule.halls .action {
+  width: 170px;
+  min-width: 170px;
+  justify-content: flex-end !important;
+}
+.head-block {
+  flex-grow: 1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 21px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

@@ -25,7 +25,7 @@ function Poster(props) {
           {props.rate}
         </div>
       </div>
-      <div class="poster-data">
+      <div className="poster-data">
         <div class="poster-title">{props.title}</div>
         <div class="poster-date">{props.date ? props.date : ""}</div>
         <span class="poster-subtitle"></span>

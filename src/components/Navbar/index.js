@@ -7,6 +7,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./style.css";
+import MainSearch from "../Search/MainPageSearch/MainSearch";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -29,16 +30,31 @@ function Navbar() {
 
           <ul className={click ? "nav-menu active" : "nav-menu justify-end"}>
             <li className="nav-item">
-              <NavLink
-                exact
-                to="/search"
+              <a
                 activeClassName="active"
                 className="nav-links"
-                onClick={handleClick}
+                onClick={() =>  <Modal
+                  closeIcon
+                  centered={false}
+                  open={open}
+                  onClose={() => setOpen(false)}
+                  onOpen={() => setOpen(true)}
+                  trigger={<Button>Show Modal</Button>}
+                >
+                  <Modal.Header>Thank you!</Modal.Header>
+                  <Modal.Content>
+                    <Modal.Description>
+                      Your subscription has been confirmed
+                    </Modal.Description>
+                  </Modal.Content>
+                  <Modal.Actions>
+                    <Button onClick={() => setOpen(false)}>OK</Button>
+                  </Modal.Actions>
+                </Modal>}
               >
                 <i className="fa-solid fa-magnifying-glass"></i>
                 Поиск
-              </NavLink>
+              </a>
             </li>
 
             <li className="nav-item">

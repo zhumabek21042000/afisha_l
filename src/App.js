@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar/index";
 import Main from "./components/MainPage/Main";
 import useAuth from "./hooks/index";
 import Routes from "./routes/Routes/index";
-// import "semantic-ui-css/semantic.min.css";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
       <Routes>
         <Main></Main>
       </Routes>
+      <Footer />
     </Router>
   );
 }

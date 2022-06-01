@@ -1,0 +1,24 @@
+.cinema-list-filter {
+  display: flex;
+  align-items: center;
+  padding-top: 32px;
+  padding-bottom: 30px;
+}
+
+.title {
+  display: inline-block;
+  font-size: 32px;
+  line-height: 42px;
+  color: #000;
+  font-weight: 700;
+}
+
+.cinema-list-filter .title {
+  margin-right: 30px;
+}
+.city {
+  font-size: 32px;
+  display: inline-block;
+  color: #fd6500;
+  cursor: pointer;
+}

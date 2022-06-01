@@ -51,7 +51,6 @@ export default class EventCity extends Component {
         <div className="left-bar">
           <div className="event-city" ref={this.container}>
             События в <span className="city">{this.state.city}</span>
-            
             <button className="button" onClick={this.handleButtonClick}>
               <i
                 className={
@@ -59,7 +58,6 @@ export default class EventCity extends Component {
                 }
               ></i>
             </button>
-            
           </div>
           {this.state.open && (
             <div className="dropdown" ref={this.container}>
