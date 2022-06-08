@@ -48,6 +48,7 @@ function Login() {
       alert(loginData.auth_token)
       console.log(auth.token)
       auth.setUser(api.getUser.data);
+      
     } catch (e) {
       if (e.response.status === 422) {
         Object.keys(e.response.data.errors).forEach((key) => {

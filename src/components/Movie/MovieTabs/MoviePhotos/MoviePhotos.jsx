@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useParams } from "react-router-dom";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 const MoviePhotos = (props) => {
@@ -25,14 +26,10 @@ const MoviePhotos = (props) => {
     <div>
       <div>
         <Slide style={{ width: "100%" }} {...properties}>
-          <div style={style}>First Slide</div>
-          <div style={style}>Second Slide</div>
-          <div style={style}>Third Slide</div>
-          <div style={style}>Fourth Slide</div>
-          <div style={style}>Fifth Slide</div>
-          <div style={style}>sixth Slide</div>
-          <div style={style}>Seventh Slide</div>
-          <div style={style}>Eight Slide</div>
+          {/* {props.images((image, index) => (
+            
+          ))} */}
+          <h1>image</h1>
         </Slide>
       </div>
     </div>

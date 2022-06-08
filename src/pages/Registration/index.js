@@ -41,6 +41,7 @@ function Registration() {
     try {
       setIsLoading(true);
       await api.registration(data);
+      console.log(data);
       const { data: loginData } = await api.auth.login(data);
       auth.setToken(loginData.token);
       auth.setUser(loginData.user);
@@ -60,7 +61,15 @@ function Registration() {
 
   return (
     <Container maxWidth="xs" className={classes.root}>
-      <Grid container spacing={3} style={{textAlign: "center", paddingTop:"20px", paddingBottom:"20px"}}>
+      <Grid
+        container
+        spacing={3}
+        style={{
+          textAlign: "center",
+          paddingTop: "20px",
+          paddingBottom: "20px",
+        }}
+      >
         <Grid item xs={12}>
           <Typography variant="h6">Регистрация</Typography>
         </Grid>
@@ -69,17 +78,17 @@ function Registration() {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Controller
-              name="firstName"
+              name="first_name"
               control={control}
               defaultValue=""
               render={({ field }) => (
                 <TextField
                   {...field}
-                  error={Boolean(errors.firstName?.message)}
+                  error={Boolean(errors.first_name?.message)}
                   fullWidth={true}
                   label="Имя"
                   variant="filled"
-                  helperText={errors.firstName?.message}
+                  helperText={errors.first_name?.message}
                 />
               )}
             />
@@ -87,17 +96,17 @@ function Registration() {
 
           <Grid item xs={12}>
             <Controller
-              name="lastName"
+              name="last_name"
               control={control}
               defaultValue=""
               render={({ field }) => (
                 <TextField
                   {...field}
-                  error={Boolean(errors.lastName?.message)}
+                  error={Boolean(errors.last_name?.message)}
                   fullWidth={true}
                   label="Фамилия"
                   variant="filled"
-                  helperText={errors.lastName?.message}
+                  helperText={errors.last_name?.message}
                 />
               )}
             />
@@ -140,10 +149,14 @@ function Registration() {
               )}
             />
           </Grid>
-          <Grid item xs={12} style={{display: 'flex', alignItems: 'center'}}>
+          <Grid item xs={12} style={{ display: "flex", alignItems: "center" }}>
             <Button
               variant="contained"
-              style={{backgroundColor: '#fd6500', color: '#fff', borderRadius:"12px"}}
+              style={{
+                backgroundColor: "#fd6500",
+                color: "#fff",
+                borderRadius: "12px",
+              }}
               type="submit"
               disabled={isLoading}
             >

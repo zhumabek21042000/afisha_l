@@ -76,10 +76,10 @@ export default class EventCity extends Component {
 
         <div className="right-bar">
           <a href="#" className="nav-link">
-            <i class="fas fa-info-circle"></i>Покупка и возврат билетов
+            <i className="fas fa-info-circle"></i>Покупка и возврат билетов
           </a>
           <a href="#" className="nav-link">
-            <i class="fas fa-head-side-mask"></i>COVID-19{" "}
+            <i className="fas fa-head-side-mask"></i>COVID-19{" "}
           </a>
         </div>
       </div>

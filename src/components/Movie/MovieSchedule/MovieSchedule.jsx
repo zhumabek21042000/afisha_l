@@ -1,7 +1,8 @@
 import React from "react";
 import "./style.css";
+import ModalSchedule from "./ModalWindow";
 
-function MovieSchedule() {
+const MovieSchedule = () => {
   return (
     <div className="cinema-schedule-row">
       <div>
@@ -31,6 +32,6 @@ function MovieSchedule() {
       </div>
     </div>
   );
-}
+};
 
 export default MovieSchedule;

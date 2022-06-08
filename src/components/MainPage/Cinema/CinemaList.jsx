@@ -13,7 +13,7 @@ const CinemaList = (props) => {
           </Link>
           <div className="d-flex align-center">
             <span className="link large text-primary-dark mr-32">На карте</span>
-            <Link class="link small text-primary" to="/cinemas">
+            <Link className="link small text-primary" to="/cinemas">
               Все {cinemaCount}
             </Link>
           </div>

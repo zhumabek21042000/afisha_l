@@ -1,0 +1,16 @@
+.articles-top {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.articles-top-data {
+  font-size: 26px;
+  color: rgb(23, 23, 8);
+}
+
+.articles-top > a {
+  font-size: 18px;
+  color: rgb(176, 176, 170);
+}

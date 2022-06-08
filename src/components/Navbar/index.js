@@ -7,7 +7,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import "./style.css";
-import MainSearch from "../Search/MainPageSearch/MainSearch";
 
 function Navbar() {
   const [click, setClick] = useState(false);
@@ -16,7 +15,16 @@ function Navbar() {
   const [user, setUser] = useState(
     localStorage.getItem("token") ? api.getUser() : ""
   );
-
+  useEffect(() => {
+    if (localStorage.getItem("token")) {
+      api.getUser().then((res) => {
+        setUser(res.data);
+      });
+    }
+    else{
+      setUser("")
+    }
+  });
   const handleClick = () => setClick(!click);
   const handleSearchClick = () => setSearchClick(!searchClick);
 
@@ -24,42 +32,24 @@ function Navbar() {
     <>
       <nav className="navbar">
         <div className="nav-container">
-          <NavLink exact to="/" className="nav-logo">
+          <NavLink to="/" className="nav-logo">
             <img src={process.env.PUBLIC_URL + "/logo2.png"} alt=""></img>
           </NavLink>
-
           <ul className={click ? "nav-menu active" : "nav-menu justify-end"}>
             <li className="nav-item">
-              <a
+              <NavLink
+                to="/search"
                 activeClassName="active"
                 className="nav-links"
-                onClick={() =>  <Modal
-                  closeIcon
-                  centered={false}
-                  open={open}
-                  onClose={() => setOpen(false)}
-                  onOpen={() => setOpen(true)}
-                  trigger={<Button>Show Modal</Button>}
-                >
-                  <Modal.Header>Thank you!</Modal.Header>
-                  <Modal.Content>
-                    <Modal.Description>
-                      Your subscription has been confirmed
-                    </Modal.Description>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button onClick={() => setOpen(false)}>OK</Button>
-                  </Modal.Actions>
-                </Modal>}
+                onClick={handleClick}
               >
                 <i className="fa-solid fa-magnifying-glass"></i>
                 Поиск
-              </a>
+              </NavLink>
             </li>
 
             <li className="nav-item">
               <NavLink
-                exact
                 to="/news"
                 activeClassName="active"
                 className="nav-links"
@@ -72,7 +62,6 @@ function Navbar() {
               <>
                 <li className="nav-item">
                   <NavLink
-                    exact
                     to="/profile"
                     activeClassName="active"
                     className="nav-links"
@@ -83,7 +72,6 @@ function Navbar() {
                 </li>
                 <li className="nav-item">
                   <NavLink
-                    exact
                     to="/"
                     activeClassName="active"
                     className="nav-links"
@@ -96,7 +84,6 @@ function Navbar() {
             ) : (
               <li className="nav-item">
                 <NavLink
-                  exact
                   to="/login"
                   activeClassName="active"
                   className="nav-links"
@@ -112,7 +99,6 @@ function Navbar() {
             <li className="nav-item" disabled={true}>
               {auth.isLoaded ? (
                 <NavLink
-                  exact
                   to="/profile"
                   activeClassName="active"
                   className="nav-links"
@@ -123,13 +109,12 @@ function Navbar() {
               ) : (
                 <>
                   <NavLink
-                    exact
                     to="/login"
                     activeClassName="active"
                     className="nav-links"
                     onClick={handleClick}
                   >
-                    <i class="fas fa-user-circle"></i>
+                    <i className="fas fa-user-circle"></i>
                     Войти
                   </NavLink>
                 </>
@@ -138,20 +123,18 @@ function Navbar() {
 
             <li className="nav-item">
               <NavLink
-                exact
                 to="/rating"
                 activeClassName="active"
                 className="nav-links"
                 onClick={handleClick}
               >
-                <i class="fas fa-star"></i>
+                <i className="fas fa-star"></i>
                 Рейтинг
               </NavLink>
             </li>
 
             <li className="nav-item">
               <NavLink
-                exact
                 to="/news"
                 activeClassName="active"
                 className="nav-links"
@@ -162,7 +145,6 @@ function Navbar() {
             </li>
             <li className="nav-item">
               <NavLink
-                exact
                 to="/contact"
                 activeClassName="active"
                 className="nav-links"
@@ -174,7 +156,6 @@ function Navbar() {
 
             <li className="nav-item">
               <NavLink
-                exact
                 to="/news"
                 activeClassName="active"
                 className="nav-links"
@@ -187,7 +168,9 @@ function Navbar() {
           <div className="nav-mobile-header">
             <div className="nav-search" onClick={handleSearchClick}>
               <i
-                class={searchClick ? "fas fa-times white " : "fas fa-search"}
+                className={
+                  searchClick ? "fas fa-times white " : "fas fa-search"
+                }
               ></i>
             </div>
             <div className="nav-icon" onClick={handleClick}>

@@ -6,9 +6,11 @@ import Main from "./components/MainPage/Main";
 import useAuth from "./hooks/index";
 import Routes from "./routes/Routes/index";
 import Footer from "./components/Footer/Footer";
+import SeatPicker from "./SeatPicker";
 
 function App() {
   return (
+    // <SeatPicker></SeatPicker>
     <Router>
       <Navbar />
       <Routes>

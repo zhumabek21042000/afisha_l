@@ -1,12 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
-import YoutubeEmbed from "../Video/YoutubeEmbed";
+import { useParams } from "react-router-dom";
+import YoutubeEmbed from "../../Movie/Video/YoutubeEmbed";
 import { AiFillStar } from "react-icons/ai/index";
 import Tabs from "../MovieTabs/MovieTabs";
 import MovieFilter from "../MovieFilter/MovieFilter";
 import MovieTableHead from "../../Cinema/CinemaTable/MovieTableHead";
 import MovieSchedule from "../MovieSchedule/MovieSchedule";
 import CommentList from "../../CommentList/CommentList";
+import AfishaService from "../../../services/axios/index";
 
 const cmlist = [
   {
@@ -43,27 +45,36 @@ function SamplePrevArrow(props) {
   );
 }
 
-function MovieDetails(props) {
-  const [name, setName] = useState("Ребята, це ГГ");
-  const [englishName, setEnglishName] = useState(
+function MovieDetails() {
+  const params = useParams();
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [originalName, setOriginalName] = useState(
     "We are ready for diploma defence"
   );
-  const [genres, setGenres] = useState(["Hard", "Kill", "Horror"]);
+  const [details, setDetails] = useState();
+  const [movieUrl, setMovieUrl] = useState();
   const [rate, setRate] = useState(9);
   const [ratedVoices, setRatedVoices] = useState(102);
   const [description, setDescription] = useState(
     "Поселившись в Грин Хилз, Соник стремится доказать, что у него есть все задатки настоящего героя. И геройское испытание не заставляет себя долго ждать: злодейский доктор Роботник вновь строит козни. На этот раз — с загадочным напарником Наклзом. Вместе они разыскивают бесценный изумруд, в котором заключены силы, способные уничтожать целые цивилизации. Соник объединяется с лисенком Тейлзом, чтобы отправиться в кругосветное путешествие и найти изумруд до того, как он попадет в плохие руки."
   );
-  const [movieFrames, setMovieFrames] = useState([]);
-  const [movieUrl, setMovieUrl] = useState();
+  const [genres, setGenres] = useState(["Hard", "Kill", "Horror"]);
 
   // here is movie details
-  const [country, setCountry] = useState();
-  const [premierDate, setPremierDate] = useState();
-  const [ageRestriction, setAgeRestriction] = useState();
-  const [producer, setProducer] = useState();
-  const [actors, setActors] = useState([]);
   const [achievments, setAchievements] = useState([]);
+
+  useEffect(() => {
+    AfishaService.getMovieById(params.id).then((res) => {
+      setName(res.data.name);
+      setOriginalName(res.data.original_name);
+      setMovieUrl(res.data.trailer_link);
+      setRate(res.data.movie_rate);
+      setRatedVoices(res.data.grade_count);
+      setDetails(res.data.detail);
+      setDescription(res.data.detail.description);
+    });
+  }, []);
 
   return (
     <>
@@ -72,18 +83,20 @@ function MovieDetails(props) {
           <div className="movie-top" style={{ boxSizing: "border-box" }}>
             <div className="movie-group">
               <div className="movie-video">
-                <YoutubeEmbed id="QXcXTcGMz7g"></YoutubeEmbed>
+                {movieUrl ? <YoutubeEmbed url={movieUrl} /> : "213"}
               </div>
             </div>
             <div className="about-movie-statistics">
               <div className="d-flex space-between align-top">
                 <div>
-                  <div className="title">Бука. Мое любимое чудище</div>
+                  <div className="title">{name}</div>
                   <div className="about-movie-hint-text bold pt-5">
-                    /Buka. Moyo lyubimoe chudische
+                    /{originalName}
                   </div>
                   <div className="about-movie-hint-text pt-10">
-                    мультфильм, приключения, фэнтези, семейный
+                    {genres.map((genre, index) => (
+                      <span key={index}>{genre} </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -130,21 +143,11 @@ function MovieDetails(props) {
                 className="d-flex space-between"
                 style={{ maxWidth: "220px" }}
               >
-                <div className="about-movie-hint-text">20 голосов</div>
-              </div>
-              <div className="d-flex py-24">
-                <div className="about-movie-statistic kino-kz">
-                  <div>5.5</div>
-                  <span>Kino.kz</span>
-                </div>
-                <div className="about-movie-statistic kinopoisk">
-                  <div>6.1</div>
-                  <span>КиноПоиск</span>
-                </div>
+                <div className="about-movie-hint-text">{ratedVoices}</div>
               </div>
             </div>
             <div className="tabs">
-              <Tabs />
+              <Tabs details={details} />
             </div>
           </div>
         </div>

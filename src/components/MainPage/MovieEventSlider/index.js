@@ -37,7 +37,7 @@ const MovieEventSlider = (props) => {
               <div>6</div> */}
 
               {movieList.map((movie, index) => (
-                <Link to={`/movie/${index}`}>
+                <Link key={index} to={`/movie/${index}`}>
                   <Poster
                     rate={movie.rate}
                     title={movie.title}
