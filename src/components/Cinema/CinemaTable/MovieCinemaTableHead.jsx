@@ -4,7 +4,7 @@ import MovieSchedule from "../../Movie/MovieSchedule/MovieSchedule";
 import { useParams, Link } from "react-router-dom";
 import AfishaService from "../../../services/axios";
 
-function MovieTableHead() {
+function MovieCinemaTableHead() {
   const [seances, setSeances] = useState([]);
   const dateTime = localStorage.getItem("movie_date_time");
 
@@ -51,18 +51,13 @@ function MovieTableHead() {
         {/* <MovieSchedule seances={seances ? seances : null}></MovieSchedule> */}
         {seances &&
           seances.map((seance) => (
-            <div className="cinema-schedule-row">
-              <div>
-                <div className="schedule-time">
-                  <div>
-                    {seance.show_time
-                      ? seance.show_time.substring(
-                          seance.show_time.lastIndexOf(" "),
-                          seance.show_time.length
-                        )
-                      : " --- "}
-                  </div>
-                </div>
+            <div className="cinema-schedule-row-wrapper">
+              <div class="cinema-cell">
+                <a href="/cinema/11">Kinoplexx Sary Arka</a>
+                <span>Зал 5</span>
+                <span>
+                  ул. Алтынсарина, 24, уг. пр. Абая; 8 (727) 277-00-38
+                </span>
               </div>
               <div className="block" style={{ width: "20%" }}>
                 <div className="cinema-title">
@@ -96,4 +91,4 @@ function MovieTableHead() {
   );
 }
 
-export default MovieTableHead;
+export default MovieCinemaTableHead;

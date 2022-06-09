@@ -7,15 +7,15 @@ import "slick-carousel/slick/slick-theme.css";
 // import Carousel from "react-multi-carousel";
 // import "react-multi-carousel/lib/styles.css";
 import Poster from "./Poster";
+import AfishaService from "../../../services/axios";
 
-const MovieEventSlider = (props) => {
-  const [movieList, setMovieList] = useState(props.movie_list);
-
-  // useEffect(() => {
-  //   props.movie_list?.then(() => {
-  //     setMovieList(props.movie_list);
-  //   });
-  // });
+const MovieEventSlider = () => {
+  const [movieList, setMovieList] = useState([]);
+  useEffect(() => {
+    AfishaService.get_movies_now().then((res) => {
+      setMovieList(res.data.data);
+    });
+  }, []);
   var settings = {
     dots: true,
     infinite: true,
@@ -28,26 +28,19 @@ const MovieEventSlider = (props) => {
         <div className="slider-items-wrapper">
           <div className="slider-items">
             <Slider {...settings}>
-              {/* <div>0</div>
-              <div>1</div>
-              <div>2</div>
-              <div>3</div>
-              <div>4</div>
-              <div>5</div>
-              <div>6</div> */}
+              {movieList &&
+                movieList.map((movie, index) => (
+                  <Link key={index} to={`/movie/${movie.id}`}>
+                    <Poster
+                      rate={movie.movie_rate}
+                      title={movie.name}
+                      image={movie.logo_image}
+                      genres={movie.genres}
+                    />
+                  </Link>
+                ))}
 
-              {movieList.map((movie, index) => (
-                <Link key={index} to={`/movie/${index}`}>
-                  <Poster
-                    rate={movie.rate}
-                    title={movie.title}
-                    image={movie.image}
-                    genres={movie.genres}
-                  />
-                </Link>
-              ))}
-
-              {Array(settings.slidesToShow - movieList.length)
+              {Array(settings.slidesToShow - movieList ? movieList.length : 0)
                 .fill("")
                 .map((s) => (
                   <div></div>

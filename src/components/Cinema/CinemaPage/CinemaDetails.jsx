@@ -1,10 +1,25 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./style.css";
 import CinemaTabs from "../CinemaTabs/CinemaTabs";
 import CinemaFilter from "../CinemaFilter/CinemaFilter";
 import CinemaSchedule from "../CinemaHallSchedule/CinemaSchedule";
+import { useParams } from "react-router-dom";
+import AfishaService from "../../../services/axios";
 
 const CinemaDetails = (props) => {
+  const params = useParams();
+  const [id, setId] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [description, setDescription] = useState("");
+  useEffect(() => {
+    AfishaService.getCinemaById(params.id).then((res) => {
+      setId(res.data.id);
+      setName(res.data.name);
+      setAddress(res.data.address);
+      setDescription(res.data.description);
+    }, []);
+  });
   return (
     <>
       <div className="about-movie container mt-32">
@@ -21,9 +36,7 @@ const CinemaDetails = (props) => {
             </div>
           </div>
           <div className="about-partner-data">
-            <div className="about-partner-title">
-              Cinemax (Dostyk Plaza) Dolby Atmos
-            </div>
+            <div className="about-partner-title">{name}</div>
             <div className="d-flex align-center mb-24">
               <div className="about-partner-icon">
                 <svg
@@ -50,11 +63,7 @@ const CinemaDetails = (props) => {
                 </svg>
               </div>
               <div>
-                <div className="about-movie-btn-caption">
-                  г. Алматы, Самал-2, д. 111, уг.ул. Жолдасбекова, ТРЦ «Достык
-                  Плаза», +7 (727) 222 00 77, +7 701 026 73 69 (администрация),
-                  бронирование билетов не предусмотрено
-                </div>
+                <div className="about-movie-btn-caption">{address}</div>
               </div>
             </div>
             <div className="d-flex align-center mt-24">
@@ -83,7 +92,7 @@ const CinemaDetails = (props) => {
           </div>
         </div>
         <div className="tabs mt-32">
-          <CinemaTabs></CinemaTabs>
+          <CinemaTabs description={description}></CinemaTabs>
         </div>
         <div className="divider mt-24"></div>
       </div>

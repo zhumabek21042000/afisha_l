@@ -64,8 +64,9 @@ function MovieDetails() {
   // here is movie details
   const [achievments, setAchievements] = useState([]);
 
-  useEffect(() => {
-    AfishaService.getMovieById(params.id).then((res) => {
+  useEffect(async () => {
+    async function fetchData() {
+      const res = await AfishaService.getMovieById(params.id);
       setName(res.data.name);
       setOriginalName(res.data.original_name);
       setMovieUrl(res.data.trailer_link);
@@ -73,7 +74,8 @@ function MovieDetails() {
       setRatedVoices(res.data.grade_count);
       setDetails(res.data.detail);
       setDescription(res.data.detail.description);
-    });
+    }
+    fetchData();
   }, []);
 
   return (
@@ -83,7 +85,20 @@ function MovieDetails() {
           <div className="movie-top" style={{ boxSizing: "border-box" }}>
             <div className="movie-group">
               <div className="movie-video">
-                {movieUrl ? <YoutubeEmbed url={movieUrl} /> : "213"}
+                {movieUrl && (
+                  <iframe
+                    width="853"
+                    height="560"
+                    src={
+                      "https://www.youtube.com/embed/" +
+                      AfishaService.youtube_parser(movieUrl)
+                    }
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    title="Embedded youtube"
+                  />
+                )}
               </div>
             </div>
             <div className="about-movie-statistics">
@@ -135,6 +150,7 @@ function MovieDetails() {
               <div className="d-flex py-8">
                 <div className="rating ">
                   <div className="rating-stars">
+                    <AiFillStar /> <AiFillStar /> <AiFillStar /> <AiFillStar />{" "}
                     <AiFillStar />
                   </div>
                 </div>
@@ -146,8 +162,8 @@ function MovieDetails() {
                 <div className="about-movie-hint-text">{ratedVoices}</div>
               </div>
             </div>
-            <div className="tabs">
-              <Tabs details={details} />
+            <div className="tabs" style={{ marginTop: "20px" }}>
+              {details && <Tabs details={details} />}
             </div>
           </div>
         </div>

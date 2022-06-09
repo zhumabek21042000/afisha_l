@@ -15,7 +15,7 @@ const MovieTabDetails = () => {
   useEffect(() => {
     AfishaService.getMovieById(params.id).then((res) => {
       setProduction(res.data.detail.countries);
-      setPremiere(res.data.detail.premier_date_kz);
+      setPremiere(res.data.detail.premiere_date_kz);
       setAgeRating(res.data.detail.age_rating);
       setDuration(res.data.detail.duration);
       setProducer(res.data.detail.producer);
@@ -26,38 +26,41 @@ const MovieTabDetails = () => {
     <Segment>
       <Grid columns={3}>
         <Grid.Column className="black-border">
-          s
           <div className="about-movie-desc">
             <strong>Производство: </strong>
-            {production.map((pr) => {
-              return <span>{pr}</span>;
-            })}
+            {production &&
+              production.map((pr) => {
+                return <span>{pr ? pr : " --- "}</span>;
+              })}
           </div>
           <div className="about-movie-desc">
             <strong>Премьера в РК: </strong>
-            {premiere}
+            {premiere ? premiere : " --- "}
           </div>
           <div className="about-movie-desc">
             <strong>Возрастной рейтинг: </strong>
-            {ageRating}
+            {ageRating ? ageRating : " --- "}+
           </div>
           <div className="about-movie-desc">
             <strong>Продолжительность: </strong>
-            {duration}
+            {duration ? duration : " --- "} минут
           </div>
         </Grid.Column>
         <Grid.Column className="black-border">
           <div className="about-movie-desc">
             <strong>Режиссер: </strong>
-            {producer.full_name}
+            {producer ? producer.full_name : "---"}
           </div>
         </Grid.Column>
         <Grid.Column className="black-border">
           <div className="about-movie-desc">
             <strong>В ролях: </strong>
-            {actors.map((act) => {
-              return <li className="about-movie-actors">* {act.full_name}</li>;
-            })}
+            {actors &&
+              actors.map((act) => {
+                return (
+                  <li className="about-movie-actors">* {act.full_name}</li>
+                );
+              })}
           </div>
           <div className="about-movie-actors"></div>
         </Grid.Column>

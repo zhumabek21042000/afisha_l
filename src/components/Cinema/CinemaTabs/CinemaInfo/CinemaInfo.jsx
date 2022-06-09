@@ -1,8 +1,8 @@
 import React from 'react'
 
-function CinemaInfo() {
+function CinemaInfo(props) {
   return (
-    <div>CinemaInfo</div>
+    <div>{props.details}</div>
   )
 }
 

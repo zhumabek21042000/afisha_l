@@ -4,6 +4,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 // import "semantic-ui-css/semantic";
+import "react-slideshow-image/dist/styles.css";
 ReactDOM.render(
   <React.StrictMode>
     <App />

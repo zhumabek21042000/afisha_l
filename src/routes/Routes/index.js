@@ -21,6 +21,7 @@ import NewsMainPage from "../../components/News/NewsMainPage";
 import NewsDetails from "../../components/News/NewsPage/NewsDetails";
 import AdminPage from "../../components/Admin/AdminPage";
 import CinemaTable from "../../components/Admin/Cinema/CinemaTable";
+import Verify from "../../pages/Registration/verify";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -62,6 +63,8 @@ function AppRoutes() {
       <Route path={`/movie/:id`} element={<MovieDetails />} />
       <Route path={`/cinema/:id`} element={<CinemaDetails />} />
       <Route path={`/news/:id`} element={<NewsDetails />} />
+      <Route path={`/verify-account`} element={<Verify />} />
+      {/* <Route path={`/email-verification?email`} */}
       {/* <Route
         path="/cinema/:id"
         render={({ match }) => {

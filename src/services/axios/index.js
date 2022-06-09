@@ -59,6 +59,45 @@ class AfishaService {
     }
   }
 
-  
+  get_today_tomorrow() {
+    return axiosInstance.get("/today_tomorrow");
+  }
+  confirm_email(mail) {
+    return axiosInstance.post("/email-confirmation/send", { email: mail });
+  }
+  get_all_cities() {
+    return axiosInstance.get("/cities");
+  }
+
+  get_movies_now() {
+    return axiosInstance.get("/movie/showing/now");
+  }
+  get_movies_soon() {
+    return axiosInstance.get("/movie/showing/soon");
+  }
+  get_movies_kids() {
+    return axiosInstance.get("/movie/showing/kids");
+  }
+
+  get_cinemas_by_city_id(id) {
+    return axiosInstance.get("/cinema/city/" + id);
+  }
+  get_seances_by_movie(id, dateTime) {
+    return axiosInstance.get(`/movie/${id}/seances?datetime=${dateTime}`);
+  }
+
+  get_id_of_city() {
+    const data = [];
+    this.get_all_cities().then((res) => {
+      data.push(res.data.data);
+      console.log(res.data.data);
+    });
+    const user_city = localStorage.getItem("city_name");
+    data.forEach((city) => {
+      if (user_city === city.name) {
+        return city.id;
+      }
+    });
+  }
 }
 export default new AfishaService();

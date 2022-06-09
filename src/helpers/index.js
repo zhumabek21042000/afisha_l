@@ -4,8 +4,8 @@ const formatPrice = (price) => {
   return `KZT. ${price}.00`;
 };
 
-const currentDate = () => {
-  var today = new Date();
+const currentDate = (date1) => {
+  var today = new Date(date1);
   var date =
     today.getDate() + "." + (today.getMonth() + 1) + "." + today.getFullYear();
   return date;

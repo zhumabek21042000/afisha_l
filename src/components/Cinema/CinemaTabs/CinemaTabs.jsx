@@ -12,7 +12,7 @@ function CinemaTabs(props) {
       menuItem: "Важное",
       render: () => (
         <Tab.Pane>
-          <CinemaImportance></CinemaImportance>
+          <CinemaImportance details={props.description}></CinemaImportance>
         </Tab.Pane>
       ),
     },
@@ -20,7 +20,7 @@ function CinemaTabs(props) {
       menuItem: "Информация",
       render: () => (
         <Tab.Pane>
-          <CinemaInfo></CinemaInfo>
+          <CinemaInfo details={props.description}></CinemaInfo>
         </Tab.Pane>
       ),
     },

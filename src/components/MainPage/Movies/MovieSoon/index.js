@@ -1,7 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import MoviesSoon from "./MoviesSoon";
+import AfishaService from "../../../../services/axios";
 
-const index = (props) => {
+const Index = () => {
+  const [count, setCount] = useState();
+  useEffect(() => {
+    AfishaService.get_movies_soon().then((res) => {
+      setCount(res.data.data);
+    });
+  }, []);
   return (
     <>
       <div className="d-flex align-center space-between mb-24">
@@ -9,12 +16,12 @@ const index = (props) => {
           Скоро в кино
         </a>
         <a className="link small text-primary" href="/movies_list?filter=soon">
-          Все 15
+          {/* Все {count ? count.length : 0} */}
         </a>
       </div>
-      <MoviesSoon movie_list={props.movie_list}></MoviesSoon>
+      <MoviesSoon></MoviesSoon>
     </>
   );
 };
 
-export default index;
+export default Index;

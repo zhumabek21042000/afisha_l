@@ -13,6 +13,8 @@ import api from "../../services/endpoints/auth";
 import useAuth from "../../hooks/index";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import AfishaService from "../../services/axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Registration() {
+  const [email, setEmail] = useState();
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
   const auth = useAuth();
+  const navigate = useNavigate();
 
   const {
     control,
@@ -37,21 +41,32 @@ function Registration() {
     resolver: yupResolver(validationSchema),
   });
 
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
+
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
       await api.registration(data);
-      console.log(data);
-      const { data: loginData } = await api.auth.login(data);
-      auth.setToken(loginData.token);
-      auth.setUser(loginData.user);
     } catch (e) {
+      if (e.response.status === 201) {
+        localStorage.setItem("temp_mail", email);
+        AfishaService.confirm_email(email).then(() => {
+          alert("Проверьте свою почту! Ссылка на подтверждение выслана");
+          localStorage.removeItem("temp_mail");
+          navigate("/");
+        });
+      }
       if (e.response.status === 422) {
-        Object.keys(e.response.data.errors).forEach((key) => {
-          setError(key, {
-            type: "manual",
-            message: e.response.data.errors[key],
-          });
+        alert("Эта почта уже используется!");
+      }
+      if (e.response.status === 204) {
+        localStorage.setItem("temp_mail", email);
+        AfishaService.confirm_email(email).then(() => {
+          alert("Проверьте свою почту! Ссылка на подтверждение выслана");
+          localStorage.removeItem("temp_mail");
+          navigate("/");
         });
       }
     } finally {
@@ -115,6 +130,8 @@ function Registration() {
           <Grid item xs={12}>
             <Controller
               name="email"
+              value={email}
+              onChange={handleEmail}
               control={control}
               defaultValue=""
               render={({ field }) => (

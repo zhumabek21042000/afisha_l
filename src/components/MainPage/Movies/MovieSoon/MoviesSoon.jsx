@@ -5,18 +5,19 @@ import "slick-carousel/slick/slick-theme.css";
 // import Carousel from "react-multi-carousel";
 // import "react-multi-carousel/lib/styles.css";
 import Poster from "../../MovieEventSlider/Poster";
+import AfishaService from "../../../../services/axios";
 
-const MoviesSoon = (props) => {
-  const [movieList, setMovieList] = useState(props.movie_list);
-  // useEffect(() => {
-  //   props.movie_list?.then(() => {
-  //     setMovieList(props.movie_list);
-  //   });
-  // });
+const MoviesSoon = () => {
+  const [movieList, setMovieList] = useState([]);
+  useEffect(() => {
+    AfishaService.get_movies_soon().then((res) => {
+      setMovieList(res.data.data);
+    });
+  }, []);
   var settings = {
     dots: true,
     infinite: true,
-    slidesToShow: 6,
+    slidesToShow: movieList.length % 6,
     slidesToScroll: 1,
   };
   return (
@@ -25,15 +26,15 @@ const MoviesSoon = (props) => {
         <div className="slider-items-wrapper">
           <div className="slider-items">
             <Slider {...settings}>
-              {movieList.map((movie) => (
-                <Poster
-                  rate={movie.rate}
-                  title={movie.title}
-                  image={movie.image}
-                  date={movie.date}
-                  genres={movie.genres}
-                />
-              ))}
+              {movieList &&
+                movieList.map((movie) => (
+                  <Poster
+                    rate={movie.movie_rate}
+                    title={movie.name}
+                    image={movie.logo_image}
+                    genres={movie.genres}
+                  />
+                ))}
             </Slider>
           </div>
         </div>

@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { useParams } from "react-router-dom";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 const MoviePhotos = (props) => {
+  const [images, setImages] = useState();
   const style = {
     // width: "100%",
     textAlign: "center",
@@ -26,10 +26,7 @@ const MoviePhotos = (props) => {
     <div>
       <div>
         <Slide style={{ width: "100%" }} {...properties}>
-          {/* {props.images((image, index) => (
-            
-          ))} */}
-          <h1>image</h1>
+          123
         </Slide>
       </div>
     </div>

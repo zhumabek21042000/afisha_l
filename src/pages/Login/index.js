@@ -7,13 +7,14 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
-import {Box} from '@mui/material/Box'
+import { Box } from "@mui/material/Box";
 import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "./validation";
 import api from "../../services/endpoints/auth";
 import useAuth from "../../hooks/index";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import AfishaService from "../../services/axios";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Login() {
+  const navigate = useNavigate();
   const classes = useStyles();
   const [isLoading, setIsLoading] = useState(false);
   const auth = useAuth();
+  const [email, setEmail] = useState("");
 
   const {
     control,
@@ -38,17 +41,19 @@ function Login() {
     resolver: yupResolver(validationSchema),
   });
 
+  const handleEmail = (event) => {
+    setEmail(event.target.value);
+  };
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
       const { data: loginData } = await api.login(data);
-      localStorage.setItem("token", loginData.auth_token)
-      
+      localStorage.setItem("token", loginData.auth_token);
+
       auth.setToken(loginData.auth_token);
-      alert(loginData.auth_token)
-      console.log(auth.token)
+      alert(loginData.auth_token);
+      console.log(auth.token);
       auth.setUser(api.getUser.data);
-      
     } catch (e) {
       if (e.response.status === 422) {
         Object.keys(e.response.data.errors).forEach((key) => {
@@ -57,9 +62,15 @@ function Login() {
             message: e.response.data.errors[key],
           });
         });
-      }
-      else if(e.response.status === 401){
-        alert("Неправильная почта или пароль")
+      } else if (e.response.status === 401) {
+        alert("Неправильная почта или пароль");
+      } else if (e.response.status === 400) {
+        localStorage.setItem("temp_mail", email);
+        AfishaService.confirm_email(email).then(() => {
+          localStorage.removeItem("temp_mail");
+          navigate("/");
+          alert("Проверьте свою почту! Ссылка выслана");
+        });
       }
     } finally {
       setIsLoading(false);
@@ -71,7 +82,6 @@ function Login() {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="h6">Войдите или зарегистрируйтесь</Typography>
-      
         </Grid>
       </Grid>
       <form onSubmit={handleSubmit(onSubmit)}>
@@ -81,6 +91,8 @@ function Login() {
               name="email"
               control={control}
               defaultValue=""
+              value={email}
+              onChange={handleEmail}
               render={({ field }) => (
                 <TextField
                   {...field}
@@ -113,18 +125,37 @@ function Login() {
               )}
             />
           </Grid>
-          <Grid style={{display:"flex", flexDirection:"column", justifyContent:"center", width:"100%", padding:"0 10px"}}>
+          <Grid
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              width: "100%",
+              padding: "0 10px",
+            }}
+          >
             <Button
               variant="contained"
-              style={{backgroundColor: '#fd6500', color: '#fff', borderRadius:"12px", marginTop:"10px", marginBottom:"20px"}}
+              style={{
+                backgroundColor: "#fd6500",
+                color: "#fff",
+                borderRadius: "12px",
+                marginTop: "10px",
+                marginBottom: "20px",
+              }}
               type="submit"
               disabled={isLoading}
             >
               Войти
             </Button>
             <Button
-              style={{backgroundColor: '#4f4f60', color: '#fff', borderRadius:"12px",borderColor: "#4f4f60"}}
-              type="submit" 
+              style={{
+                backgroundColor: "#4f4f60",
+                color: "#fff",
+                borderRadius: "12px",
+                borderColor: "#4f4f60",
+              }}
+              type="submit"
               component={Link}
               to="/registration"
             >

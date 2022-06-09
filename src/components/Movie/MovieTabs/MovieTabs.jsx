@@ -1,8 +1,48 @@
 import React, { useEffect, useState } from "react";
 import { Tab } from "semantic-ui-react";
-import MoviePhotos from "./MoviePhotos/MoviePhotos";
 import MovieTabDetails from "./MovieTabDetails/MovieTabDetails";
 import AfishaService from "../../../services/axios/index";
+
+import { Slide } from "react-slideshow-image";
+import "react-slideshow-image/dist/styles.css";
+const MoviePhotos = ({ imgs }) => {
+  const [images, setImages] = imgs;
+  const style = {
+    // width: "100%",
+    textAlign: "center",
+    maxWidth: "182px",
+    minWidth: "182px",
+    height: "91px",
+    padding: "50px 0",
+    fontSize: "30px",
+  };
+
+  const properties = {
+    duration: 3000,
+    slidesToShow: 3,
+    slidesToScroll: 2,
+    autoplay: false,
+    // indicators: true,
+  };
+
+  return (
+    <div>
+      <div>
+        <Slide style={{ width: "100%" }} {...properties}>
+          {imgs &&
+            imgs.map((img) => (
+              <img
+                width={250}
+                height={250}
+                style={{ padding: "40px 0 20px", marginLeft: "60px" }}
+                src={img.image_path}
+              />
+            ))}
+        </Slide>
+      </div>
+    </div>
+  );
+};
 
 function MovieTabs(props) {
   const [description, setDescription] = useState();
@@ -32,7 +72,7 @@ function MovieTabs(props) {
       menuItem: "Кадры из фильма",
       render: () => (
         <Tab.Pane>
-          <MoviePhotos images={images}/>
+          <MoviePhotos imgs={images} />
         </Tab.Pane>
       ),
     },

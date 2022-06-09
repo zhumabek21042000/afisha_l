@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
-function CinemaImportance() {
-  return (
-    <div>CinemaImportance</div>
-  )
+function CinemaImportance(props) {
+  return <div>{props.details}</div>;
 }
 
-export default CinemaImportance
+export default CinemaImportance;

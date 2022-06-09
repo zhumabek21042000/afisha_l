@@ -7,9 +7,9 @@ import { InputGroup, FormControl, Button, Form } from "react-bootstrap";
 const CinemaTableData = (props) => {
   const [cinemas, setCinemas] = useState(props.cinemalist);
   const [search, setSearch] = useState("");
-  let history = useLocation();
 
   useEffect(() => {
+    
     // setLoading(true);
     // CourseService.getAllUsers().then((res) => {
     //   setUsers(res.data);

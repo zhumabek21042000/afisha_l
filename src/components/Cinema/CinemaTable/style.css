@@ -66,3 +66,78 @@
   display: flex;
   justify-content: stretch;
 }
+.cinema-schedule-row {
+  display: flex;
+  padding: 16px 0;
+  align-items: center;
+}
+.cinema-schedule-row > div:not(.cinema-cell) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 400;
+  width: 10%;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 16px;
+  line-height: 21px;
+}
+
+.schedule-time {
+  border: 1px solid #000;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 4px;
+  width: 96px;
+  min-width: 96px;
+  height: 55px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cinema-schedule-row > div:not(.cinema-cell).block {
+  display: block;
+  width: 20%;
+}
+
+.cinema-schedule .cinema-title {
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 24px;
+  text-align: left;
+  text-align: center;
+}
+.cinema-schedule .cinema-title > a {
+  font-weight: 700;
+}
+
+.link {
+  text-decoration: none;
+  color: #000;
+  font-weight: 400;
+}
+
+.cinema-schedule .cinema-subtitle {
+  font-size: 14px;
+  line-height: 18px;
+  color: #888;
+  font-weight: 400;
+}
+.cinema-schedule-row > div:not(.cinema-cell).row-divider {
+  border-right: 1px solid #ccc;
+  height: 55px;
+}
+
+.cinema-schedule-row .session-lang-tag {
+  width: 60px;
+  height: 30px;
+  border-radius: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+.cinema-schedule-row-wrapper .cinema-sessions-cells {
+  width: 84%;
+}

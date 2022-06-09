@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./poster.css";
 function Poster(props) {
+  const [genres, setGenres] = useState([]);
+  useEffect(() => {
+    setGenres(props.genres);
+  });
   return (
     <a className="poster" href="#">
       <div
@@ -26,10 +30,12 @@ function Poster(props) {
         </div>
       </div>
       <div className="poster-data">
-        <div className="poster-title">{props.title}</div>
-        <div className="poster-date">{props.date ? props.date : ""}</div>
+        <div className="poster-title">
+          {props.title ? props.title : " --- "}
+        </div>
+        <div className="poster-date">{props.date ? props.date : " --- "}</div>
         <span className="poster-subtitle"></span>
-        <span>{props.genres}</span>
+        <span>{genres}</span>
       </div>
     </a>
   );
