@@ -20,9 +20,8 @@ function Navbar() {
       api.getUser().then((res) => {
         setUser(res.data);
       });
-    }
-    else{
-      setUser("")
+    } else {
+      setUser("");
     }
   });
   const handleClick = () => setClick(!click);
@@ -67,7 +66,7 @@ function Navbar() {
                     className="nav-links"
                     onClick={handleClick}
                   >
-                    Profile
+                    Профиль
                   </NavLink>
                 </li>
                 <li className="nav-item">

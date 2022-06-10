@@ -6,21 +6,22 @@ import AfishaService from "../../../services/axios/index";
 import { Slide } from "react-slideshow-image";
 import "react-slideshow-image/dist/styles.css";
 const MoviePhotos = ({ imgs }) => {
-  const [images, setImages] = imgs;
+  const [images] = imgs;
+
   const style = {
     // width: "100%",
     textAlign: "center",
     maxWidth: "182px",
     minWidth: "182px",
     height: "91px",
-    padding: "50px 0",
+    padding: "20px 0",
     fontSize: "30px",
   };
 
   const properties = {
     duration: 3000,
-    slidesToShow: 3,
-    slidesToScroll: 2,
+    slidesToShow: imgs.length % 6,
+    slidesToScroll: 1,
     autoplay: false,
     // indicators: true,
   };
@@ -31,11 +32,8 @@ const MoviePhotos = ({ imgs }) => {
         <Slide style={{ width: "100%" }} {...properties}>
           {imgs &&
             imgs.map((img) => (
-              <img
-                width={250}
-                height={250}
-                style={{ padding: "40px 0 20px", marginLeft: "60px" }}
-                src={img.image_path}
+              <img width={200} height={200} src={img.image_path}
+              style={{marginLeft: ""}}
               />
             ))}
         </Slide>

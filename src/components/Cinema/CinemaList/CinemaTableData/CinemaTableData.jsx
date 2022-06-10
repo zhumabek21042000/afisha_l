@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import AxiosService from "../../../../services/axios/index";
+import AfishaService from "../../../../services/axios/index";
 import CinemaListData from "../CinemaListData.jsx/CinemaListData";
 import { InputGroup, FormControl, Button, Form } from "react-bootstrap";
 
 const CinemaTableData = (props) => {
-  const [cinemas, setCinemas] = useState(props.cinemalist);
+  const [cinemas, setCinemas] = useState([]);
   const [search, setSearch] = useState("");
 
   useEffect(() => {
-    
+    AfishaService.get_cinemas_by_city_id(localStorage.getItem("city_id")).then(
+      (res) => {
+        setCinemas(res.data.data);
+      }
+    );
     // setLoading(true);
     // CourseService.getAllUsers().then((res) => {
     //   setUsers(res.data);
@@ -41,7 +45,9 @@ const CinemaTableData = (props) => {
           </Button>
         </InputGroup>
       </Form>
-      <CinemaListData cinemalist={currentCinemas}></CinemaListData>
+      <CinemaListData
+        cinemalist={currentCinemas ? currentCinemas : []}
+      ></CinemaListData>
     </div>
   );
 };

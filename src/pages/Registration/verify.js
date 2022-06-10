@@ -11,9 +11,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import validationSchema from "./validation";
 import api from "../../services/endpoints/auth";
 import useAuth from "../../hooks/index";
-import { Link, useParams, useNavigate } from "react-router-dom";
+import {
+  Link,
+  useParams,
+  useNavigate,
+  useSearchParams,
+} from "react-router-dom";
 import { useState, useEffect } from "react";
 import AfishaService from "../../services/axios/index";
+import { Loader } from "semantic-ui-react";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,39 +31,36 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function Verify({ route, navigation }) {
+  const [loading, setLoading] = useState(true);
   const classes = useStyles();
   const [email, setEmail] = useState();
   const [isLoading, setIsLoading] = useState(false);
   const params = useParams();
   const navigate = useNavigate();
-
+  const [searchParams] = useSearchParams();
   const auth = useAuth();
 
   const sendEmail = () => {
-    AfishaService.confirm_email(localStorage.getItem("temp_mail")).then(() => {
-      alert("Проверьте свою почту! Ссылка выслана");
-      localStorage.removeItem("temp_mail");
-      navigate("/");
+    const paramEmail = searchParams.get("email");
+    const paramCode = searchParams.get("confirmation_code");
+    AfishaService.send_code_email(paramEmail, paramCode).then((res) => {
+      if (res.status === 200) {
+        alert("Почта успешна подтверждена!");
+        navigate("/");
+      }
     });
   };
   return (
-    <Container maxWidth="xs" className={classes.root}>
-      <Grid
-        container
-        spacing={3}
-        style={{
-          textAlign: "center",
-          paddingTop: "20px",
-          paddingBottom: "20px",
-        }}
-      >
-        <Grid item xs={12}>
-          <h3 onClick={() => sendEmail()}>
-            Нажмите сюда чтобы подтвердить почту
-          </h3>
-        </Grid>
-      </Grid>
-    </Container>
+    <>
+      {loading === true ? (
+        <Container maxWidth="xs" className={classes.root}>
+          <Loader active inline="centered" />
+          {sendEmail()}
+        </Container>
+      ) : (
+        <div></div>
+      )}
+    </>
   );
 }
 

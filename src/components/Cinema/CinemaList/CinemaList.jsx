@@ -21,7 +21,7 @@ function CinemaList(props) {
     <>
       <div className="cinema-list-filter">
         <div className="title">Все кинотеатры города </div>
-        <select
+        {/* <select
           value={
             localStorage.getItem("city_name")
               ? localStorage.getItem("city_name")
@@ -40,7 +40,7 @@ function CinemaList(props) {
                 {city_arr.name}
               </option>
             ))}
-        </select>
+        </select> */}
       </div>
     </>
   );

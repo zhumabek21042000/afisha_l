@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Slide } from "react-slideshow-image";
 import { Grid, Divider, List } from "semantic-ui-react";
 import "react-slideshow-image/dist/styles.css";
 import "./style.css";
+import AfishaService from "../../../services/axios";
 const news_list = [
   {
     id: 1,
@@ -22,9 +23,12 @@ const news_list = [
   },
 ];
 const NewsList = (props) => {
-  const [newsList, setNewsList] = useState(
-    props.articlesList ? props.articlesList : news_list
-  );
+  const [newsList, setNewsList] = useState([]);
+  useEffect(() => {
+    AfishaService.get_news().then((res) => {
+      setNewsList(res.data.data);
+    });
+  }, []);
 
   return (
     <Grid style={{ boxSizing: "border-box", margin: "0" }} columns={2}>
@@ -37,22 +41,25 @@ const NewsList = (props) => {
         <Grid.Column>
           <h2>Новости</h2>
           <List celled>
-            {newsList.map((news) => (
-              <List.Item style={{ padding: "20px 0px" }}>
-                <List.Content>
-                  <Link to={`/news/${news.id}`}>
-                    <List.Header>
-                      <p className="news-title">{news.title}</p>
-                    </List.Header>
-                  </Link>
+            {newsList &&
+              newsList.map((news) => (
+                <List.Item style={{ padding: "20px 0px" }}>
+                  <List.Content>
+                    <Link to={`/news/${news.id ? news.id : 0}`}>
+                      <List.Header>
+                        <p className="news-title">
+                          {news.title ? news.title : "---"}
+                        </p>
+                      </List.Header>
+                    </Link>
 
-                  <span style={{ color: "rgb(176,176,170)" }}>
-                    {" "}
-                    {news.date}
-                  </span>
-                </List.Content>
-              </List.Item>
-            ))}
+                    <span style={{ color: "rgb(176,176,170)" }}>
+                      {" "}
+                      {news.created_at ? news.create_at : "---"}
+                    </span>
+                  </List.Content>
+                </List.Item>
+              ))}
           </List>
         </Grid.Column>
       </Grid.Row>

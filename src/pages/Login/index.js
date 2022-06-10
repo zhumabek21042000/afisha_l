@@ -47,11 +47,17 @@ function Login() {
   const onSubmit = async (data) => {
     try {
       setIsLoading(true);
-      const { data: loginData } = await api.login(data);
-      localStorage.setItem("token", loginData.auth_token);
+      await api.login(data).then((res) => {
+        if (res.status === 201) {
+          alert("Вы успешно залогинились!");
+          localStorage.setItem("token", res.data.auth_token);
+          window.location.reload();
+          navigate("/");
+        }
+      });
 
-      auth.setToken(loginData.auth_token);
-      alert(loginData.auth_token);
+      // auth.setToken(loginData.auth_token);
+
       console.log(auth.token);
       auth.setUser(api.getUser.data);
     } catch (e) {

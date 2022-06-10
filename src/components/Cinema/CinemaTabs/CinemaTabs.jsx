@@ -24,14 +24,7 @@ function CinemaTabs(props) {
         </Tab.Pane>
       ),
     },
-    {
-      menuItem: "Фото",
-      render: () => (
-        <Tab.Pane>
-          <CinemaPhotos />
-        </Tab.Pane>
-      ),
-    },
+
     {
       menuItem: "Режим работы",
       render: () => (

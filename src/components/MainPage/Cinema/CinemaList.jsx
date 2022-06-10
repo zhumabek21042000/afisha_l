@@ -3,16 +3,16 @@ import { Link } from "react-router-dom";
 import "./style.css";
 import AfishaService from "../../../services/axios";
 const CinemaList = (props) => {
-  const [cinemaCount, setCinemaCount] = useState(0);
+  const [cinemaCount, setCinemaCount] = useState(1);
   const [cinemaList, setCinemaList] = useState([]);
   const [cities, setCities] = useState([]);
   useEffect(() => {
-    AfishaService.get_cinemas_by_city_id(
-      parseInt(localStorage.getItem("city_id"))
-    ).then((res) => {
-      setCinemaList(res.data.data);
-      setCinemaCount(res.data.data.length);
-    });
+    AfishaService.get_cinemas_by_city_id(localStorage.getItem("city_id")).then(
+      (res) => {
+        setCinemaList(res.data.data);
+        setCinemaCount(res.data.data.length);
+      }
+    );
   }, []);
   return (
     <div className="cinema-block">

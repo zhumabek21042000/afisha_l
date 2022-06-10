@@ -2,8 +2,16 @@ import React, { useEffect, useState } from "react";
 import "./poster.css";
 function Poster(props) {
   const [genres, setGenres] = useState([]);
+  const [status, setStatus] = useState("green");
   useEffect(() => {
     setGenres(props.genres);
+    if (props.rate < 5) {
+      setStatus("red");
+    } else if (props.rate >= 5 && props.rate < 7) {
+      setStatus("orange");
+    } else {
+      setStatus("green");
+    }
   });
   return (
     <a className="poster" href="#">
@@ -11,7 +19,7 @@ function Poster(props) {
         className="poster-image"
         style={{ backgroundImage: `url(${props.image})` }}
       >
-        <div className="rate green">
+        <div className={`rate ${status}`}>
           <svg
             width="8"
             height="8"
@@ -30,12 +38,18 @@ function Poster(props) {
         </div>
       </div>
       <div className="poster-data">
-        <div className="poster-title">
+        <div
+          className="poster-title"
+          style={{
+            textOverflow: "ellipsis",
+            overflow: "hidden",
+            whiteSpace: "nowrap",
+          }}
+        >
           {props.title ? props.title : " --- "}
         </div>
         <div className="poster-date">{props.date ? props.date : " --- "}</div>
-        <span className="poster-subtitle"></span>
-        <span>{genres}</span>
+        <span>{genres && genres.map((genre) => genre + " ")}</span>
       </div>
     </a>
   );

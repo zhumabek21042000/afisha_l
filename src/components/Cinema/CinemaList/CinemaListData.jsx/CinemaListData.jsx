@@ -12,7 +12,7 @@ const CinemaListData = ({ cinemalist }) => {
               <Image
                 style={{ height: "50px", width: "60px" }}
                 avatar
-                src={cinema.photo_url}
+                src={"https://cdn.kino.kz/cinema/99/p223x267.jpg"}
               />
               <List.Content style={{ fontSize: "16px" }}>
                 <Link to={"/cinema/" + cinema.id}>

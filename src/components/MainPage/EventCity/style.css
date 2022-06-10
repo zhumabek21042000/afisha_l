@@ -114,3 +114,12 @@ li:hover {
   position: relative;
   font-size: 15px;
 }
+.dropdown-cities {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: "";
+  border: none;
+  color: #fd6500;
+  margin-left: 10px;
+}

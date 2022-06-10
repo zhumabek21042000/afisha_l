@@ -89,6 +89,7 @@ export default class EventCity extends Component {
     this.setState({ city: event.target.value });
     // const [id, name] = JSON.parse(event.target.value);
     localStorage.setItem("city_name", event.target.value);
+    localStorage.setItem("city_id", 3);
   };
   componentDidMount() {
     AfishaService.get_all_cities().then((res) => {
@@ -106,6 +107,7 @@ export default class EventCity extends Component {
           <div className="event-city" ref={this.container}>
             События в<span className="city" style={{ fontSize: "21px" }}></span>
             <select
+              className="dropdown-cities"
               value={
                 localStorage.getItem("city_name")
                   ? localStorage.getItem("city_name")
@@ -119,6 +121,7 @@ export default class EventCity extends Component {
                     key={city_arr.id}
                     name={city_arr.id}
                     value={city_arr.name}
+                    onClick={() => localStorage.setItem("city_id", city_arr.id)}
                     // value={JSON.stringify([city_arr.id, city_arr.name])}
                   >
                     {city_arr.name}

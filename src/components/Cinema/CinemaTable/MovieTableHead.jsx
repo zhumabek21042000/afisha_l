@@ -48,7 +48,6 @@ function MovieTableHead() {
         </div>
       </div>
       <div className="container cinema-schedule-body">
-        {/* <MovieSchedule seances={seances ? seances : null}></MovieSchedule> */}
         {seances &&
           seances.map((seance) => (
             <div className="cinema-schedule-row">
@@ -58,7 +57,7 @@ function MovieTableHead() {
                     {seance.show_time
                       ? seance.show_time.substring(
                           seance.show_time.lastIndexOf(" "),
-                          seance.show_time.length
+                          seance.show_time.lastIndexOf(":")
                         )
                       : " --- "}
                   </div>
@@ -77,10 +76,18 @@ function MovieTableHead() {
               <div className="row-divider">
                 <div className="session-lang-tag">Рус</div>
               </div>
-              <div className="row-divider">{seance.price_adult}</div>
-              <div className="row-divider">{seance.price_kid}</div>
-              <div className="row-divider">{seance.price_student}</div>
-              <div className="row-divider">{seance.price_vip}</div>
+              <div className="row-divider">
+                {seance.price_adult ? seance.price_adult : " --- "}
+              </div>
+              <div className="row-divider">
+                {seance.price_kid ? seance.price_kid : " --- "}
+              </div>
+              <div className="row-divider">
+                {seance.price_student ? seance.price_student : " --- "}
+              </div>
+              <div className="row-divider">
+                {seance.price_vip ? seance.price_vip : " --- "}
+              </div>
               <div style={{ width: "15%" }}>
                 <button
                   className="btn active-secondary primary-dark"

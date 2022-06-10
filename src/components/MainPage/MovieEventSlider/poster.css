@@ -25,6 +25,17 @@ a:hover {
   -webkit-box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
   box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
 }
+
+.rate.red {
+  background-color: #ea4200;
+  -webkit-box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
+  box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
+}
+.rate.orange {
+  background-color: #eab300;
+  -webkit-box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
+  box-shadow: 0 4px 9px rgb(0 128 95 / 50%);
+}
 .poster .rate {
   position: absolute;
   right: 8px;

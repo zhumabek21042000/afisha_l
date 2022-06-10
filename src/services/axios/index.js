@@ -58,13 +58,29 @@ class AfishaService {
       return short_url;
     }
   }
-
+  register(data) {
+    return axiosInstance.post("/auth/register", data);
+  }
   get_today_tomorrow() {
     return axiosInstance.get("/today_tomorrow");
   }
-  confirm_email(mail) {
-    return axiosInstance.post("/email-confirmation/send", { email: mail });
+  get_todays_date() {
+    axiosInstance.get("/today_tomorrow").then((res) => {
+      return res.data.today;
+    });
   }
+  confirm_email(mail) {
+    return axiosInstance.post("/email-confirmation/send", {
+      email: mail,
+    });
+  }
+  send_code_email(mail, code) {
+    return axiosInstance.post("/email-confirmation/confirm", {
+      email: mail,
+      code: code,
+    });
+  }
+
   get_all_cities() {
     return axiosInstance.get("/cities");
   }
@@ -85,19 +101,33 @@ class AfishaService {
   get_seances_by_movie(id, dateTime) {
     return axiosInstance.get(`/movie/${id}/seances?datetime=${dateTime}`);
   }
-
-  get_id_of_city() {
+  get_seances_by_cinema(id, dateTime) {
+    return axiosInstance.get(`/cinema/${id}/seances?datetime=${dateTime}`);
+  }
+  get_id_of_city(city_name) {
     const data = [];
     this.get_all_cities().then((res) => {
       data.push(res.data.data);
       console.log(res.data.data);
     });
-    const user_city = localStorage.getItem("city_name");
+    const user_city = localStorage.getItem("city_name")
+      ? localStorage.getItem("city_name")
+      : city_name;
     data.forEach((city) => {
       if (user_city === city.name) {
-        return city.id;
+        localStorage.setItem("city_id");
       }
     });
+  }
+  get_news() {
+    return axiosInstance.get("/news");
+  }
+  get_news_by_id(id) {
+    return axiosInstance.get("/news/" + id);
+  }
+  decode_text(text) {
+    const new_text = text.replace(/(?:\r\n|\r|\n)/g, "<br>");
+    return new_text;
   }
 }
 export default new AfishaService();
